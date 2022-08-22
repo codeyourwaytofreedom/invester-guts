@@ -4,7 +4,26 @@ html, body {
             }
 
 .create_wallet{
+                    position: relative;
                     border: 1px solid red;;
-                    height: 50%;
+                    height: 60%;
                     width: 50%;
+                    top:15%; left:25%;
               }
+
+.row1 {
+        position: absolute;
+        height: 10%; width: 70%;
+        border: 1px solid black;
+        top:10%; left: 10%;
+      }
+.r_label {
+            position: relative;
+            font-size: 2vw;
+            top:4%;
+}
+.r_input {
+    position: relative;
+    height: 80%;
+    top:2%;
+}
