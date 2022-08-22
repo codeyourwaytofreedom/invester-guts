@@ -6,22 +6,43 @@
 {%block trading%}
 
 
-<h1>From Paris, hellow world!</h1>
+<h1>From Paris, hello world!</h1>
 
 <div class="create_wallet">
+    <div class="rows">
     <form action="/" method="POST">
-        <div class="row1">
-            <label class="r_label" for="wallet name">Wallet Name</label>
-            <input class="r_input" id="wallet name" type="text">
-            <select class="r_select" id="currency">
-                <option value="try">TRY</option>
-                <option value="usd">USD</option>
-                <option value="eur">EUR</option>
-                <option value="gbp">GBP</option>
-            </select>
-        </div>
-        
+
+            <div class="row1">
+                <label class="r_label" for="wallet name"><u>Wallet Name</u></label>
+                <input class="r_input" id="wallet name" type="text">
+            </div>
+            <div class="row1">
+                <label class="r_label" for="currency"><u>Currency Type</u></label>
+                <select class="r_select" id="currency">
+                    <option value="try">₺ TRY</option>
+                    <option value="usd">$ USD</option>
+                    <option value="eur">€ EUR</option>
+                    <option value="gbp">£ GBP</option>
+                </select>
+            </div>
+            <div class="row1">
+                <label class="r_label" for="budget"><u>Budget</u> </label>
+                <select class="r_select" id="budget">
+                    <option value="b1">100.000</option>
+                    <option value="b2">200.000</option>
+                    <option value="b3">300.000</option>
+                    <option value="b4">400.000</option>
+                </select>
+            </div><br>
+            <div class="row2">
+                <button class="create" type="submit">Create Wallet</button>
+            </div>
+
+
+
+
     </form>
+    </div>
 
 </div>
 
