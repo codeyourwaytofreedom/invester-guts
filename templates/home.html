@@ -1,4 +1,7 @@
 {% extends 'layout.html' %}
+{%block page_title%}
+    Start Trading
+{%endblock page_title%}
 
 {%block trading%}
 
@@ -7,14 +10,17 @@
 
 <div class="create_wallet">
     <form action="/" method="POST">
-        <label for="wallet name">Wallet Name</label>
-        <input id="wallet name" type="text"><br>
-        <select id="currency">
-            <option value="try">TRY</option>
-            <option value="usd">USD</option>
-            <option value="eur">EUR</option>
-            <option value="gbp">GBP</option>
-        </select>
+        <div class="row1">
+            <label class="r_label" for="wallet name">Wallet Name</label>
+            <input class="r_input" id="wallet name" type="text">
+            <select class="r_select" id="currency">
+                <option value="try">TRY</option>
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+                <option value="gbp">GBP</option>
+            </select>
+        </div>
+        
     </form>
 
 </div>
