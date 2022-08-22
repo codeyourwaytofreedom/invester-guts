@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{%block trading%}
+
+
+<h1>From Paris, hellow world!</h1>
+
+<div class="create_wallet">
+    <form action="/" method="POST">
+        <label for="wallet name">Wallet Name</label>
+        <input id="wallet name" type="text"><br>
+        <select id="currency">
+            <option value="try">TRY</option>
+            <option value="usd">USD</option>
+            <option value="eur">EUR</option>
+            <option value="gbp">GBP</option>
+        </select>
+    </form>
+
+</div>
+
+
+{%endblock trading%}
