@@ -4,12 +4,43 @@
 {% endblock page_title%}
 
 {% block wallets %}
+<div class="wallet_panel">
+    <div class="ws">
+        <div class="w1">Wallet Name</div>
+        <div class="w1">Wallet2</div>
+        <div class="w1">Wallet3</div>
+    </div>
+    <div class="account">
+         <div class="balance"> 
+            <h2><u>Balance</u></h2>
+            <div class="budget">
+                <h2>200.000 TRY</h2>
+            </div>
+            <p style="color:silver">Active since: 12.08.2022</p>
+        </div> 
+    </div>
+    <div class="transactions">
+            <p style="font-size:2vw; color:red;"><u>Live Exchange Rates</u> </p>
+            <div class="rates">
+                    <div class="currency">TRY/GBP</div>
+                    <div class="currency">TRY/GBP</div>
+                    <div class="currency">TRY/EUR</div>
+                    <div class="currency">TRY/USD</div>
+            </div>
+            <div class="rates">
+                <div class="currency">15.00</div>
+                <div class="currency">15.00</div>
+                <div class="currency">15.00</div>
+                <div class="currency">15.00</div>
+        </div>
+    </div>
+    <span id="clock">{{tim}}</span>
+</div>
 
 
 
-
-
-
+<script src="static/trade.js">
+</script>
 
 
 

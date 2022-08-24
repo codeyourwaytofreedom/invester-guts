@@ -1,0 +1,79 @@
+*{box-sizing: border-box;}
+.wallet_panel {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    left: 10%; top:10%;
+
+}
+
+.ws{
+
+        display:grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1%;
+}
+
+
+.w1 {
+        border: 1px solid silver;
+        font-size: 2.5vw;
+        text-align: center;
+        padding: 1%;
+        border-radius: 2%;
+
+}
+.w1:hover {
+        cursor: pointer;
+}
+
+.account {
+                position: absolute;
+                top:12.5%;
+                height: 85%; width: 33%;
+                border: 1px solid silver;
+                border-radius: 5%;
+                text-align: center;
+            
+}
+
+.transactions {
+                position: absolute;
+                top:12.5%;
+                height: 85%; width: 66%; left: 33.5%;
+                border: 1px solid silver;
+                border-radius: 5%;
+                text-align: center;
+
+
+}
+.balance {
+        position: relative;
+        font-size: 1.5vw;
+        top:20%;
+}
+
+.budget{
+                position: relative;
+                width: 70%; height: 10%; left: 15%;
+                border-radius: 5%;
+                border: 1px solid white;
+                font-size: 1.1vw;
+                box-shadow: inset 1px 1px 5px #228B22;
+
+}
+
+.rates {
+        position: relative;
+        width: 90%;
+        height: 10%; left:5%;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        padding: 1%;
+        font-size: 2vw;
+}
+
+.currency {
+        border-left: 1px solid red;
+        border-right: 1px solid red;
+}
