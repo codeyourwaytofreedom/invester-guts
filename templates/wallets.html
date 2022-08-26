@@ -3,6 +3,32 @@
     My Wallets
 {% endblock page_title%}
 
+
+{% block live_data %}
+
+        <script>
+            
+            function update_values() {
+                $.getJSON("http://127.0.0.1:5000" + '/rates',
+                        
+                function(data) {
+                $('#result').text(data.result);
+                console.log(data.result);
+                });
+                
+            };
+            $(document).ready(update_values())
+
+            
+            
+            </script>
+
+{% endblock live_data %}
+
+
+
+
+
 {% block wallets %}
 <div class="wallet_panel">
     <div class="ws">
@@ -23,34 +49,16 @@
             <p style="font-size:2vw; color:red;"><u>Live Exchange Rates</u> </p>
             <div class="rates">
                     <div class="currency">TRY/GBP</div>
-                    <div class="currency">TRY/GBP</div>
                     <div class="currency">TRY/EUR</div>
                     <div class="currency">TRY/USD</div>
             </div>
             <div class="rates">
                 <div class="currency">15.00</div>
                 <div class="currency">15.00</div>
-                <div class="currency">15.00</div>
-                <div class="currency">15.00</div>
+                <div class="currency"> <span id="result">?</span></div>
         </div>
     </div>
-    <span id="clock">{{tim}}</span>
 </div>
-
-
-
-<script src="static/trade.js">
-</script>
-
-
-
-
-
-
-
-
-
-
 
 
 

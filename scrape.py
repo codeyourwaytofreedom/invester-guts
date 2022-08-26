@@ -1,10 +1,9 @@
-from cgi import print_arguments
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
+import requests
 
-driver = webdriver.Chrome(executable_path="/home/mrmentor/vs/chromedriver")
-driver.get("https://tr.tradingview.com/symbols/USDTRY/")
+url = "https://v6.exchangerate-api.com/v6/569776aeffaab7cefabd8180/latest/TRY"
+response = requests.get(url)
+data = response.json()
 
-element = driver.find_element(By.XPATH, "/html/body/div[2]/div[4]/div[2]/header/div/div[3]/div[1]/div/div/div/div[1]/div[1]")
-print(element.text)
+print(1/data["conversion_rates"]["USD"])
+print(1/data["conversion_rates"]["GBP"])
+print(1/data["conversion_rates"]["EUR"])

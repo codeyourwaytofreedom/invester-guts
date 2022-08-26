@@ -68,7 +68,7 @@
         width: 90%;
         height: 10%; left:5%;
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         padding: 1%;
         font-size: 2vw;
 }

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import requests
-import datetime
+
+
 
 invester = Flask(__name__)
 invester.config["SECRET_KEY"] = "dtjdtjtkt4758"
@@ -18,30 +19,21 @@ def create_wallet():
 
 @invester.route("/wallets")
 def wallets():
-    tim=datetime.datetime.today()
-    print(tim)
-    return render_template('wallets.html', tim=tim)
-
-def get_price():
-    url = "http://api.coincap.io/v2/assets?"
-    response = requests.request("GET", url, headers={}, data = {})
-    if response.status_code == 200:
-        data=response.json()['data'][0]['priceUsd']
-        print(data)
-        return data
-    else:
-        print("Error")  
-        return 0
+    return render_template('wallets.html')
 
 
-@invester.route('/Crypto_Price', methods = ['GET'])
+@invester.route('/rates', methods = ['GET'])
 def stuff():
-    price=get_price()
-    return jsonify(result=price)
+    url = "https://v6.exchangerate-api.com/v6/569776aeffaab7cefabd8180/latest/TRY"
+    response = requests.get(url)
+    data = response.json()
 
-@invester.route('/test')
-def index():
-    return render_template('test.html')
+    print(1/data["conversion_rates"]["USD"])
+    print(1/data["conversion_rates"]["GBP"])
+    print(1/data["conversion_rates"]["EUR"])
+    return jsonify(result=str(1/data["conversion_rates"]["USD"])[0:6])
+
+
 
 
 if __name__ == "__main__":
