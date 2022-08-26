@@ -6,26 +6,9 @@
 
 {% block live_data %}
 
-        <script>
-            
-            function update_values() {
-                $.getJSON("http://127.0.0.1:5000" + '/rates',
-                        
-                function(data) {
-                $('#result').text(data.result);
-                console.log(data.result);
-                });
-                
-            };
-            $(document).ready(update_values())
-
-            
-            
-            </script>
+        <script src="static/trade.js"></script>
 
 {% endblock live_data %}
-
-
 
 
 
@@ -48,15 +31,38 @@
     <div class="transactions">
             <p style="font-size:2vw; color:red;"><u>Live Exchange Rates</u> </p>
             <div class="rates">
+                    <div class="currency">TRY/USD</div>
                     <div class="currency">TRY/GBP</div>
                     <div class="currency">TRY/EUR</div>
-                    <div class="currency">TRY/USD</div>
             </div>
             <div class="rates">
-                <div class="currency">15.00</div>
-                <div class="currency">15.00</div>
-                <div class="currency"> <span id="result">?</span></div>
-        </div>
+                <div class="currency" id="usd">15.00</div>
+                <div class="currency" id="gbp">15.00</div>
+                <div class="currency" id="eur"></div>
+            </div>
+            <div class="buy">
+                <div id="r_buysell">
+                    <button id="bsbutton">BUY</button>
+                    <select class="ch_select" id="currency">
+                        <option value="usd">$ USD</option>
+                        <option value="eur">€ EUR</option>
+                        <option value="gbp">£ GBP</option>
+                    </select>
+                    <input id="bsamount" type="text">
+                </div>      
+            </div>
+            <div class="sell">
+                <div id="r_buysell">
+                    <button id="bsbutton">BUY</button>
+                    <select class="ch_select" id="currency">
+                        <option value="usd">$ USD</option>
+                        <option value="eur">€ EUR</option>
+                        <option value="gbp">£ GBP</option>
+                    </select>
+                    <input id="bsamount" type="text">
+                </div>      
+            </div>
+
     </div>
 </div>
 

@@ -77,3 +77,32 @@
         border-left: 1px solid red;
         border-right: 1px solid red;
 }
+
+.buy, .sell{
+        position: relative;
+        border: 1px solid silver; border-radius: 2%;
+        height: 20%;
+        width: 90%;
+        left:5%;
+        top: 10%;
+}
+
+.sell{
+        margin-top: 2%;
+}
+
+
+#r_buysell {
+        display: grid;
+        position: relative;
+        top: 25%;
+        grid-template-columns: 25% 25% 48%;
+        border: 1px solid black;
+        height: 50%; width: 80%;
+        left: 10%;
+        gap: 1%;
+
+}
+
+
+

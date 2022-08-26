@@ -31,7 +31,10 @@ def stuff():
     print(1/data["conversion_rates"]["USD"])
     print(1/data["conversion_rates"]["GBP"])
     print(1/data["conversion_rates"]["EUR"])
-    return jsonify(result=str(1/data["conversion_rates"]["USD"])[0:6])
+    rates = [str(1/data["conversion_rates"]["USD"])[0:7],
+            str(1/data["conversion_rates"]["GBP"])[0:7],
+            str(1/data["conversion_rates"]["EUR"])[0:7]]
+    return jsonify(rate=rates)
 
 
 
