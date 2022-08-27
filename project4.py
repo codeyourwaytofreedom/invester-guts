@@ -19,7 +19,10 @@ def create_wallet():
 
 @invester.route("/wallets")
 def wallets():
-    return render_template('wallets.html')
+    budget= 200000
+    bals = {"usd":00, "gbp":00,"eur":00}
+
+    return render_template('wallets.html', budget = budget, bals=bals)
 
 
 @invester.route('/rates', methods = ['GET'])
