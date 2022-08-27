@@ -4,12 +4,6 @@
 {% endblock page_title%}
 
 
-{% block live_data %}
-
-        <script src="static/trade.js"></script>
-
-{% endblock live_data %}
-
 
 
 {% block wallets %}
@@ -25,20 +19,29 @@
             <div class="budget">
                 <h2>200.000 TRY</h2>
             </div>
+            <p style="color:silver">GBP: 00.00</p>
+            <p style="color:silver">USD: 00.00</p>
+            <p style="color:silver">EUR: 00.00</p>
+            <br>
             <p style="color:silver">Active since: 12.08.2022</p>
         </div> 
     </div>
     <div class="transactions">
             <p style="font-size:2vw; color:red;"><u>Live Exchange Rates</u> </p>
             <div class="rates">
-                    <div class="currency">TRY/USD</div>
-                    <div class="currency">TRY/GBP</div>
-                    <div class="currency">TRY/EUR</div>
+                    <div class="currency">USD/TRY</div>
+                    <div class="currency">GBP/TRY</div>
+                    <div class="currency">EUR/TRY</div>
             </div>
             <div class="rates">
-                <div class="currency" id="usd">15.00</div>
-                <div class="currency" id="gbp">15.00</div>
+                <div class="currency" id="usd"></div>
+                <div class="currency" id="gbp"></div>
                 <div class="currency" id="eur"></div>
+            </div>
+
+            <div id="bs-option">
+                <div id="buy_cat">BUY</div>
+                <div id="sell_cat">SELL</div>
             </div>
             <div class="buy">
                 <div id="r_buysell">
@@ -51,21 +54,12 @@
                     <input id="bsamount" type="text">
                 </div>      
             </div>
-            <div class="sell">
-                <div id="r_buysell">
-                    <button id="bsbutton">BUY</button>
-                    <select class="ch_select" id="currency">
-                        <option value="usd">$ USD</option>
-                        <option value="eur">€ EUR</option>
-                        <option value="gbp">£ GBP</option>
-                    </select>
-                    <input id="bsamount" type="text">
-                </div>      
-            </div>
+
 
     </div>
 </div>
 
 
+<script src="static/trade.js"></script>
 
 {% endblock wallets %}

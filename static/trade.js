@@ -10,6 +10,13 @@ function update_values() {
     });
     
 };
+
 $(document).ready(update_values())
 
 
+
+  $("#bsbutton").click(function() {
+    console.log($( "#currency option:selected" ).text());
+
+  }  
+  );
