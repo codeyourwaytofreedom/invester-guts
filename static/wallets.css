@@ -72,7 +72,7 @@
         font-size: 2vw;
 }
 
-.currency {
+.currency, .currency_Val {
         border-left: 1px solid red;
         border-right: 1px solid red;
 }

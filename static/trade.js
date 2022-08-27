@@ -15,8 +15,22 @@ $(document).ready(update_values())
 
 
 
-  $("#bsbutton").click(function() {
-    console.log($( "#currency option:selected" ).text());
 
-  }  
+  $("#bsbutton").click(function()
+  {
+    if ($( "#bsamount" ).val().length!=0)
+  {
+    
+      let cur = $("#currency option:selected").val()
+      if (cur==1)
+      {console.log($('#usd').text()*$( "#bsamount" ).val())}
+      if (cur==2)
+      {console.log($('#eur').text()*$( "#bsamount" ).val())}
+      if (cur==3)
+      {console.log($('#gbp').text()*$( "#bsamount" ).val())}
+
+      
+
+  }
+  }
   );
