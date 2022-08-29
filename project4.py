@@ -1,6 +1,4 @@
-from crypt import methods
-from readline import add_history
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session
+from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
 import requests
 from flask_sqlalchemy import SQLAlchemy
 
@@ -21,6 +19,14 @@ class wallet(db.Model):
     def __repr__(self):
         return f"Company('{self.id}','{self.balance}','{self.usd_bal}', '{self.eur_bal}', '{self.gbp_bal}')"
 
+
+
+url = "https://v6.exchangerate-api.com/v6/569776aeffaab7cefabd8180/latest/TRY"
+response = requests.get(url)
+data = response.json()
+
+print("rates loaded")
+
 @invester.route("/", methods=['POST', 'GET'])
 def login():
     return  redirect(url_for('create_wallet'))
@@ -34,14 +40,28 @@ def create_wallet():
 @invester.route("/wallets", methods= ["POST","GET"])
 def wallets():
     wallet_ = wallet.query.get(1)
-    if (request.method == "POST"):
+    if (request.method == "POST" and request.form.get("amount")):
         add_to_balance = request.form.get("amount")
         print(add_to_balance)
         currency_selected = request.form.get("select")
         if currency_selected=="1":
-            wallet.query.get(1).usd_bal=int(request.form.get("amount"))+wallet.query.get(1).usd_bal
+            wallet.query.get(1).usd_bal=float(request.form.get("amount"))+wallet.query.get(1).usd_bal
+            wallet.query.get(1).balance = str(wallet.query.get(1).balance - float(request.form.get("amount"))*1/data["conversion_rates"]["USD"])[0:9]
             db.session.commit()
-            print(wallet.query.get(1))
+            c = "USD"
+        elif currency_selected=="2":
+            wallet.query.get(1).eur_bal=float(request.form.get("amount"))+wallet.query.get(1).eur_bal
+            wallet.query.get(1).balance = str(wallet.query.get(1).balance - float(request.form.get("amount"))*1/data["conversion_rates"]["EUR"])[0:9]
+            db.session.commit()
+            c = "EUR"
+        elif currency_selected=="3":
+            wallet.query.get(1).gbp_bal=float(request.form.get("amount"))+wallet.query.get(1).gbp_bal
+            wallet.query.get(1).balance = str(wallet.query.get(1).balance - float(request.form.get("amount"))*1/data["conversion_rates"]["GBP"])[0:9]
+            db.session.commit()
+            c = "GBP"
+        flash ("You have bought " +request.form.get("amount") + " "+ c)
+        print(wallet.query.get(1))
+
         return redirect(url_for("wallets"))
         
     else:
@@ -50,10 +70,6 @@ def wallets():
 
 @invester.route('/rates', methods = ['GET'])
 def stuff():
-    url = "https://v6.exchangerate-api.com/v6/569776aeffaab7cefabd8180/latest/TRY"
-    response = requests.get(url)
-    data = response.json()
-
     # print(1/data["conversion_rates"]["USD"])
     # print(1/data["conversion_rates"]["GBP"])
     # print(1/data["conversion_rates"]["EUR"])
