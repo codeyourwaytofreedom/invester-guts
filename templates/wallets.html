@@ -17,11 +17,11 @@
          <div class="balance"> 
             <h2><u>Balance</u></h2>
             <div class="budget">
-                <h2 id="bud">{{budget}} TRY</h2>
+                <h2 id="bud">{{budget.balance}} TRY</h2>
             </div>
-            <p style="color:silver">GBP: <span id="gbp_bal">{{bals.gbp}}</span></p>
-            <p  style="color:silver">USD: <span id="usd_bal">{{bals.usd}}</span></p>
-            <p style="color:silver">EUR: <span id="eur_bal">{{bals.eur}}</span></p>
+            <p style="color:silver">GBP: <span id="gbp_bal">{{budget.gbp_bal}}</span></p>
+            <p  style="color:silver">USD: <span id="usd_bal">{{budget.usd_bal}}</span></p>
+            <p style="color:silver">EUR: <span id="eur_bal">{{budget.eur_bal}}</span></p>
             <br>
             <p style="color:silver">Active since: 12.08.2022</p>
         </div> 
@@ -44,15 +44,18 @@
                 <div id="sell_cat">SELL</div>
             </div>
             <div class="buy">
+                <form action="" method="POST">
                 <div id="r_buysell">
-                    <button id="bsbutton">BUY</button>
-                    <select class="ch_select" id="currency">
+                    <button id="bsbutton" type="submit">BUY</button>
+                    
+                    <select class="ch_select" id="currency" name="select">
                         <option value="1">$ USD</option>
                         <option value="2">€ EUR</option>
                         <option value="3">£ GBP</option>
                     </select>
-                    <input id="bsamount" type="number">
-                </div>      
+                    <input id="bsamount" type="number", name="amount">
+                </div>    
+            </form>  
             </div>
 
 

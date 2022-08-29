@@ -21,6 +21,7 @@ $(document).ready(update_values())
     let current_budget = parseFloat($(".budget").text());
     let usd_bal = parseFloat($("#usd_bal").text());
     let eur_bal = parseFloat($("#eur_bal").text());
+    let gbp_bal = parseFloat($("#gbp_bal").text());
     if ($( "#bsamount" ).val().length!=0)
   {
     
@@ -39,7 +40,11 @@ $(document).ready(update_values())
       $("#eur_bal").html(eur_bal+parseFloat($( "#bsamount" ).val()))
       }
       if (cur==3)
-      {console.log($('#gbp').text()*$( "#bsamount" ).val())}
+      {console.log($('#gbp').text()*$( "#bsamount" ).val())
+      $("#bud").html(current_budget-$('#gbp').text()*$( "#bsamount" ).val())
+      console.log(gbp_bal+$( "#bsamount" ).val())
+      $("#gbp_bal").html(gbp_bal+parseFloat($( "#bsamount" ).val()))
+    }
 
       
 

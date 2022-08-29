@@ -91,11 +91,11 @@
 #r_buysell {
         display: grid;
         position: relative;
-        top: 15%;
         grid-template-columns: 25% 25% 48%;
         height: 30%; width: 80%;
         left: 10%;
         gap: 1%;
+        margin-top: 9%;
 
 }
 
