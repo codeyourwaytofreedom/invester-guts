@@ -13,9 +13,9 @@ console.log("uploaded js")
 
 // $(document).ready(update_values())
 
-$(function() {
-  $('#flash').delay(5000).fadeOut();
-});
+// $(function() {
+//   $('#flash').delay(5000).fadeOut();
+// });
 
 
 let cbsell = document.getElementById('cbsell');
