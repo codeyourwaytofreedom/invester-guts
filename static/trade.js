@@ -1,58 +1,75 @@
 console.log("uploaded js")
 
-function update_values() {
-    $.getJSON("http://127.0.0.1:5000" + '/rates',
+// function update_values() {
+//     $.getJSON("http://127.0.0.1:5000" + '/rates',
             
-    function(data) {
-    $('#usd').text(data.rate[0]);
-    $('#gbp').text(data.rate[1]);
-    $('#eur').text(data.rate[2]);
-    });
+//     function(data) {
+//     $('#usd').text(data.rate[0]);
+//     $('#gbp').text(data.rate[1]);
+//     $('#eur').text(data.rate[2]);
+//     });
     
-};
+// };
 
-$(document).ready(update_values())
+// $(document).ready(update_values())
 
 $(function() {
-  $('#flash').delay(500).delay(5000).fadeOut();
+  $('#flash').delay(5000).fadeOut();
 });
 
 
-  // $("#bsbutton").click(function()
-  // {
-  //   let current_budget = parseFloat($(".budget").text());
-  //   let usd_bal = parseFloat($("#usd_bal").text());
-  //   let eur_bal = parseFloat($("#eur_bal").text());
-  //   let gbp_bal = parseFloat($("#gbp_bal").text());
-  //   if ($( "#bsamount" ).val().length!=0)
-  // {
-    
-  //     let cur = $("#currency option:selected").val()
-  //     if (cur==1)
-  //     {console.log($('#usd').text()*$( "#bsamount" ).val())
-  //       console.log(current_budget-$('#usd').text()*$( "#bsamount" ).val())
-  //       $("#bud").html(current_budget-$('#usd').text()*$( "#bsamount" ).val())
-  //       console.log(usd_bal+$( "#bsamount" ).val())
-  //       $("#usd_bal").html(usd_bal+parseFloat($( "#bsamount" ).val()))
-  //     }
-  //     if (cur==2)
-  //     {console.log($('#eur').text()*$( "#bsamount" ).val())
-  //     $("#bud").html(current_budget-$('#eur').text()*$( "#bsamount" ).val())
-  //     console.log(eur_bal+$( "#bsamount" ).val())
-  //     $("#eur_bal").html(eur_bal+parseFloat($( "#bsamount" ).val()))
-  //     }
-  //     if (cur==3)
-  //     {console.log($('#gbp').text()*$( "#bsamount" ).val())
-  //     $("#bud").html(current_budget-$('#gbp').text()*$( "#bsamount" ).val())
-  //     console.log(gbp_bal+$( "#bsamount" ).val())
-  //     $("#gbp_bal").html(gbp_bal+parseFloat($( "#bsamount" ).val()))
-  //   }
+let cbsell = document.getElementById('cbsell');
+let cbbuy = document.getElementById('cbbuy');
+let bsbutton = document.getElementById('bsbutton');
+let amount = document.getElementById('bsamount');
+let currency = document.getElementById('currency');
+let sell_cat = document.getElementById('sell_cat');
+let buy_cat = document.getElementById('buy_cat');
+let r_buysell = document.getElementById('r_buysell');
+let bs_option = document.getElementById('bs-option');
 
-      
 
-  // }
-  // }
-  // );
+cbsell.addEventListener('change', uncheck_cbbuy)
+cbbuy.addEventListener('change', uncheck_cbsell)
 
-  // console.log(parseFloat($(".budget").text()));
-  
+function uncheck_cbbuy() 
+{
+    cbbuy.checked = false;
+    console.log(cbbuy.checked,cbsell.checked)
+    if (cbbuy.checked == false && cbsell.checked == false)
+    {console.log("both off")
+      r_buysell.style.display = "none";
+      bs_option.style.top = "20%";
+    }
+    if (cbbuy.checked == true || cbsell.checked == true)
+    {console.log("either on")
+    r_buysell.style.display = "grid";
+    bs_option.style.top = "15%";
+    }
+    bsbutton.innerHTML = '<i class="icon-collapse"></i>SELL';
+    bsbutton.style.backgroundImage = "linear-gradient(to right, lightsalmon, white)";
+    currency.style.backgroundImage = "linear-gradient(to right, lightsalmon, white)";
+    amount.style.backgroundImage = "linear-gradient(to right, lightsalmon, white)";
+    amount.value = ""
+}
+
+function uncheck_cbsell() 
+{
+    cbsell.checked = false;
+    console.log(cbbuy.checked, cbsell.checked)
+    if (cbbuy.checked == false && cbsell.checked == false)
+    {console.log("both off")
+    r_buysell.style.display = "none";
+    bs_option.style.top = "20%";
+    }
+    if (cbbuy.checked == true || cbsell.checked == true)
+    {console.log("either on")
+    r_buysell.style.display = "grid";
+    bs_option.style.top = "15%";
+    }
+    bsbutton.innerHTML = '<i class="icon-collapse-top"></i> BUY';
+    bsbutton.style.backgroundImage = "linear-gradient(to right,#90EE90, white)";
+    currency.style.backgroundImage = "linear-gradient(to right,#90EE90, white)";
+    amount.style.backgroundImage = "linear-gradient(to right,#90EE90, white)";
+    amount.value = ""
+}

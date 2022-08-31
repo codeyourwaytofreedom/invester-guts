@@ -8,45 +8,54 @@
 
 {% block wallets %}
 <div class="wallet_panel">
-    <div class="ws">
-        <div class="w1">Wallet Name</div>
-        <div class="w1">Wallet2</div>
-        <div class="w1">Wallet3</div>
-    </div>
+
     <div class="account">
-         <div class="balance"> 
-            <h2><u>Balance</u></h2>
             <div class="budget">
-                <h2 id="bud">{{budget.balance}} TRY</h2>
+            {{budget.balance}} TRY
             </div>
-            <p style="color:silver">GBP: <span id="gbp_bal">{{budget.gbp_bal}}</span></p>
-            <p  style="color:silver">USD: <span id="usd_bal">{{budget.usd_bal}}</span></p>
-            <p style="color:silver">EUR: <span id="eur_bal">{{budget.eur_bal}}</span></p>
-            <br>
-            <p style="color:silver">Active since: 12.08.2022</p>
-        </div> 
+            
+            <div class="bals">
+                <li>GBP:  <span id="gbp_bal">{{budget.gbp_bal}}</span></li>
+                <li>USD:  <span id="usd_bal">{{budget.usd_bal}}</span></li>
+                <li>EUR:  <span id="eur_bal">{{budget.eur_bal}}</span></li>
+                <div class="active" style="color:silver">Active since: 12.08.2022</div>
+            </div>
+            
+            <!-- <span class="p_bal" style="color:gray">GBP: <span id="gbp_bal">{{budget.gbp_bal}}</span></span>
+            <span  class="p_bal" style="color:gray">USD: <span id="usd_bal">{{budget.usd_bal}}</span></span>
+            <span class="p_bal" style="color:gray">EUR: <span id="eur_bal">{{budget.eur_bal}}</span></span>
+            <br> -->
+            <!-- <span class="active" style="color:silver">Active since: 12.08.2022</span> -->
     </div>
     <div class="transactions">
-            <p style="font-size:2vw; color:red;"><u>Live Exchange Rates</u> </p>
+        <br><span class="live"><u>Live Exchange Rates</u> </span><br>
             <div class="rates">
                     <div class="currency">USD/TRY</div>
                     <div class="currency">GBP/TRY</div>
                     <div class="currency">EUR/TRY</div>
             </div>
-            <div class="rates">
-                <div class="currency_val" id="usd"></div>
-                <div class="currency_val" id="gbp"></div>
-                <div class="currency_val" id="eur"></div>
+            <div class="rates" id="rates_buy">
+                <div class="currency_val" id="usd">BUY</div>
+                <div class="currency_val" id="usd">{{rates[0]}}</div>
+                <div class="currency_val" id="gbp">{{rates[1]}}</div>
+                <div class="currency_val" id="eur">{{rates[2]}}</div>
+            </div>
+            <div class="rates" id="rates_sell">
+                <div class="currency_val" id="usd_sell">SELL</div>
+                <div class="currency_val" id="usd_sell">{{rates_sell[0]}}</div>
+                <div class="currency_val" id="gbp_sell">{{rates_sell[1]}}</div>
+                <div class="currency_val" id="eur_sell">{{rates_sell[2]}}</div>
             </div>
 
-            <div id="bs-option">
-                <div id="buy_cat">BUY</div>
-                <div id="sell_cat">SELL</div>
-            </div>
             <div class="buy">
                 <form action="" method="POST">
+                <div id="bs-option">
+                    <label id="buy_cat"> <div><i class="icon-collapse-top"></i> 
+                    BUY</div> <input id="cbbuy" name="cbbuy" type="checkbox" ></label>
+                    <label id="sell_cat"><div><i class="icon-collapse"></i>SELL</div><input id="cbsell" name="cbsell" type="checkbox"></label>
+                </div>
                 <div id="r_buysell">
-                    <button id="bsbutton" type="submit">BUY</button>
+                    <button name="buybutton" id="bsbutton" type="submit"><i class="icon-collapse-top"></i> BUY</button>
                     
                     <select class="ch_select" id="currency" name="select">
                         <option value="1">$ USD</option>
@@ -55,20 +64,27 @@
                     </select>
                     <input id="bsamount" type="number" min=0 step=0.1 name="amount">
                 </div>    
-            </form>  
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            {% for message in messages %}
-                <h3 id="flash" style="color:red">{{ message }}</h3>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
-            </div>
-
+                </form>  
             
+            </div>
+                {% with messages = get_flashed_messages(category_filter=["error"]) %}
+                {% if messages %}
+                {% for message in messages %}
+                    <h3 id="flash" style="color:red; margin-top:1%">{{ message }}</h3>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+    
+                {% with messages = get_flashed_messages(category_filter=["success"]) %}
+                {% if messages %}
+                {% for message in messages %}
+                    <h3 id="flash">{{ message }}</h3>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
     </div>
+                
 </div>
-
 
 <script src="static/trade.js"></script>
 

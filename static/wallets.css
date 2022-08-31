@@ -1,4 +1,6 @@
 *{box-sizing: border-box;}
+body{min-height: 600px;}
+
 .wallet_panel {
     position: relative;
     width: 80%;
@@ -7,72 +9,77 @@
 
 }
 
-.ws{
-
-        display:grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1%;
-}
-
-
-.w1 {
-        border: 1px solid silver;
-        font-size: 2.5vw;
-        text-align: center;
-        padding: 1%;
-        border-radius: 2%;
-
-}
-.w1:hover {
-        cursor: pointer;
-}
-
 .account {
                 position: absolute;
-                top:12.5%;
+                top:8.5%;
                 height: 85%; width: 33%;
                 border: 1px solid silver;
                 border-radius: 5%;
-                text-align: center;
-            
+                text-align: center;       
+                font-size: 2.5vw;     
+                display: grid;
+                justify-items: center;
+}
+
+.budget {
+        position: relative;
+        top:15%; border-radius: 15%;
+        height: 30%;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        box-shadow: inset 1px 1px 5px green;
+        width: 70%;
+        }
+
+.bals {
+        position: absolute;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        top:50%;
+        font-size: 2vw;
+        width: 80%;
+
 }
 
 .transactions {
                 position: absolute;
-                top:12.5%;
+                top:8.5%;
                 height: 85%; width: 66%; left: 33.5%;
                 border: 1px solid silver;
                 border-radius: 5%;
                 text-align: center;
-
-
-}
-.balance {
-        position: relative;
-        font-size: 1.5vw;
-}
-
-.budget{
-                position: relative;
-                width: 70%; height: 10%; left: 15%;
-                border-radius: 5%;
-                border: 1px solid white;
-                font-size: 1.1vw;
-                box-shadow: inset 1px 1px 5px #228B22;
-
 }
 
 .rates {
         position: relative;
-        width: 90%;
-        height: 10%; left:5%;
+        width: 80%;
+        height: 10%; left:15%;
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         padding: 1%;
         font-size: 2vw;
+        justify-content: center;
+        align-items:center ;
+        margin-bottom: 1%;
+}
+#rates_buy, #rates_sell {
+        grid-template-columns: 12% 29% 28% 28%;
+        font-size: 2.3vw;
+        width: 94%; left:2%;
+        gap:1%
 }
 
-.currency, .currency_Val {
+.currency_val {background-color: lightgreen;
+                border-radius: 5%;
+}
+
+#usd_sell, #eur_sell, #gbp_sell {
+        background-color: lightsalmon;
+}
+
+.currency{
         border-left: 1px solid red;
         border-right: 1px solid red;
 }
@@ -84,50 +91,156 @@
         width: 90%;
         left:5%;
         top: 5%;
-}
-
-
-
-#r_buysell {
-        display: grid;
-        position: relative;
-        grid-template-columns: 25% 25% 48%;
-        height: 30%; width: 80%;
-        left: 10%;
-        gap: 1%;
-        margin-top: 9%;
-
+        margin-bottom: 1%;
 }
 
 #bs-option{
-        position: relative;
-        height: 15%; width: 90%; left:5%; top:2%;
+        position: absolute;
+        height:30%; width: 80%; left:10%; top:25%;
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        padding: 1%;
-        gap: 2%;
-        font-size: 2vw;
+        gap: 1%;
 }
 
-#buy_cat {
-        background-image: linear-gradient(to right, #90EE90,#98FB98);
-}
+#r_buysell {
+        display: grid;
+        position: absolute;
+        grid-template-columns: 25% 25% 48%;
+        height: 30%; width: 80%;
+        left: 10%; top:60%;
+        gap: 1%;
+        display: none;
 
-#sell_cat {
-        background-image: linear-gradient(to right, #FF6347,#FF7F50);}
-        
+}
 
 #bsamount {
                 font-size: 2vw;
                 padding-left: 5%;
+                background-image: linear-gradient(to right,#90EE90, white );
 }
 
 #bsbutton {
-
+        background-image: linear-gradient(to right,#90EE90, white );
         font-size: 1.5vw;
 }
 
 .ch_select {
         font-size: 1.5vw;
         padding-left: 5%;
+}
+#currency {
+        background-image: linear-gradient(to right,#90EE90, white );
+}
+
+#flash{
+        color:green;
+}
+
+input[type='checkbox'] {
+        -webkit-appearance:none;
+        width:20%;
+        height:50%;
+        border:2px solid #555;
+        background: white;
+        display: none;
+    }
+input[type='checkbox']:checked {
+background: black;
+}
+
+#buy_cat, #sell_cat {
+                padding-top: 3%;
+                font-size: 3vw;
+                border-radius: 3%;
+                border: 2px solid #32CD32;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+}
+
+#sell_cat {
+        /* background-image: linear-gradient(to right, red, lightsalmon); */
+        border: 2px solid red;
+}
+
+#buy_cat:hover{
+                cursor: pointer;
+
+}
+#sell_cat:hover {
+        cursor: pointer;
+}
+.live{font-size: 3vw; color:red}
+
+@media all and (max-width:800px) {
+        .wallet_panel {
+                width: 86%; height: 96%;
+                left: 7%; top:2%;
+                        }
+        .account {
+                top:8.5%;
+                height: 25%; width: 99%;
+                display: block;
+                }
+
+        .transactions {
+                        top:34.5%; left:0;
+                        height: 60%; width: 99%;
+                }
+        .rates {
+                width: 80%;
+                height: 10%; left:15%;
+                font-size: 4vw;
+        }
+        #rates_buy, #rates_sell {
+                grid-template-columns: 13% 28% 28% 28%;
+                font-size: 4vw;
+                gap:1%
+        }
+
+        .buy{
+                border: 1px solid gray;
+                height: 45%;
+        }
+
+        #buy_cat, #sell_cat{
+                font-size: 6vw;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+        }
+        #bsbutton, #bsamount, .ch_select {
+                font-size: 3vw;
+        }
+
+        .budget {
+                left: 13%; top:5%; width: 35%; height: 90%; 
+                font-size: 4vw;
+
+                
+        }
+        .bals {
+                left:50%;
+                font-size: 3vw;
+                top:15%; height: 70%; width: 40%;
+
+        }
+        .live{font-size: 4vw;}
+}
+@media all and (max-width:600px) {
+
+        .wallet_panel {
+                width: 96%; height: 96%;
+                left: 2%; top:2%;
+                        }
+
+        .bals {
+                font-size: 4vw;
+                left:52%;
+                width: 45%;
+        }
+        .budget {
+                left: 5%; top:5%; width: 40%; height: 90%; 
+                font-size: 5vw;
+                }
 }
