@@ -35,13 +35,13 @@
                     <div class="currency">EUR/TRY</div>
             </div>
             <div class="rates" id="rates_buy">
-                <div class="currency_val" id="usd">BUY</div>
+                <div class="currency_val" id="_buy">BUY</div>
                 <div class="currency_val" id="usd">{{rates[0]}}</div>
                 <div class="currency_val" id="gbp">{{rates[1]}}</div>
                 <div class="currency_val" id="eur">{{rates[2]}}</div>
             </div>
             <div class="rates" id="rates_sell">
-                <div class="currency_val" id="usd_sell">SELL</div>
+                <div class="currency_val" id="_sell">SELL</div>
                 <div class="currency_val" id="usd_sell">{{rates_sell[0]}}</div>
                 <div class="currency_val" id="gbp_sell">{{rates_sell[1]}}</div>
                 <div class="currency_val" id="eur_sell">{{rates_sell[2]}}</div>
@@ -67,6 +67,7 @@
                 </form>  
             
             </div>
+            <div class="feedback">
                 {% with messages = get_flashed_messages(category_filter=["error"]) %}
                 {% if messages %}
                 {% for message in messages %}
@@ -78,10 +79,11 @@
                 {% with messages = get_flashed_messages(category_filter=["success"]) %}
                 {% if messages %}
                 {% for message in messages %}
-                    <h3 id="flash">{{ message }}</h3>
+                    <h3 id="flash" style="color:green; margin-top:1%">{{ message }}</h3>
                 {% endfor %}
                 {% endif %}
                 {% endwith %}
+            </div> 
     </div>
                 
 </div>

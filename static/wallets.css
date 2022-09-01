@@ -172,6 +172,11 @@ background: black;
 }
 .live{font-size: 3vw; color:red}
 
+.feedback{
+        position: relative;
+        height: 7%; width: 80%; left:10%; top:6%;
+}
+
 @media all and (max-width:800px) {
         .wallet_panel {
                 width: 86%; height: 96%;

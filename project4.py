@@ -30,22 +30,25 @@ rates = [float(str(1/data["conversion_rates"]["USD"]*1.015)[0:7]),
 rates_sell = [float(str(1/data["conversion_rates"]["USD"])[0:7]),
             float(str(1/data["conversion_rates"]["GBP"])[0:7]),
             float(str(1/data["conversion_rates"]["EUR"])[0:7])]
-# rates = [18.50, 22.50, 18.50]
-# rates_sell = [18.40, 22.40, 18.40]
+
 
 @invester.route('/rates', methods = ['GET'])
 def stuff():
-    print(1/data["conversion_rates"]["USD"])
-    print(1/data["conversion_rates"]["GBP"])
-    print(1/data["conversion_rates"]["EUR"])
-    rates = [str(1/data["conversion_rates"]["USD"])[0:7],
+    url = "https://v6.exchangerate-api.com/v6/569776aeffaab7cefabd8180/latest/TRY"
+    response = requests.get(url)
+    data = response.json()
+    rates = [float(str(1/data["conversion_rates"]["USD"]*1.015)[0:7]),
+            float(str(1/data["conversion_rates"]["GBP"]*1.015)[0:7]),
+            float(str(1/data["conversion_rates"]["EUR"]*1.015)[0:7])]
+
+    rates_sell = [str(1/data["conversion_rates"]["USD"])[0:7],
             str(1/data["conversion_rates"]["GBP"])[0:7],
             str(1/data["conversion_rates"]["EUR"])[0:7]]
-    return jsonify(rate=rates)
+    return jsonify(rate=rates, rates_sell=rates_sell)
 
 @invester.route("/", methods=['POST', 'GET'])
 def login():
-    return  redirect(url_for('create_wallet'))
+    return  redirect(url_for('wallets'))
 
 @invester.route("/create-wallet", methods=['POST', 'GET'])
 def create_wallet():
@@ -63,28 +66,28 @@ def wallets():
         currency_selected = request.form.get("select")
         if currency_selected=="1":
             if float(request.form.get("amount"))*rates[0] > wallet.query.get(1).balance:
-                flash("you don't have enough balance!", "error")
+                flash("Not enough balance!!!", "error")
             else:
                 wallet.query.get(1).usd_bal=float(request.form.get("amount"))+wallet.query.get(1).usd_bal
                 wallet.query.get(1).balance = str(wallet.query.get(1).balance - float(request.form.get("amount"))*rates[0])[0:9]
                 db.session.commit()
-                flash ("You have bought " +request.form.get("amount") + " USD", "success")
+                flash ("Purchase successful: +" +request.form.get("amount") + " USD", "success")
         elif currency_selected=="2":
             if float(request.form.get("amount"))*rates[1] > wallet.query.get(1).balance:
-                flash("you don't have enough balance!", "error")
+                flash("Not enough balance!!!", "error")
             else:
                 wallet.query.get(1).eur_bal=float(request.form.get("amount"))+wallet.query.get(1).eur_bal
                 wallet.query.get(1).balance = str(wallet.query.get(1).balance - float(request.form.get("amount"))*rates[1])[0:9]
                 db.session.commit()
-                flash ("You have bought " +request.form.get("amount") + " EUR", "success")
+                flash ("Purchase successful: +" +request.form.get("amount") + " EUR", "success")
         elif currency_selected=="3":
             if float(request.form.get("amount"))*rates[2] > wallet.query.get(1).balance:
-                flash("you don't have enough balance!", "error")
+                flash("Not enough balance!!!", "error")
             else:
                 wallet.query.get(1).gbp_bal=float(request.form.get("amount"))+wallet.query.get(1).gbp_bal
                 wallet.query.get(1).balance = str(wallet.query.get(1).balance - float(request.form.get("amount"))*rates[2])[0:9]
                 db.session.commit()
-                flash ("You have bought " +request.form.get("amount") + " GBP", "success")
+                flash ("Purchase successful: +" +request.form.get("amount") + " GBP", "success")
         
         print(wallet.query.get(1))
 
@@ -97,28 +100,28 @@ def wallets():
         currency_selected = request.form.get("select")
         if currency_selected=="1":
             if float(request.form.get("amount")) > wallet.query.get(1).usd_bal:
-                flash("you don't have enough usd!", "error")
+                flash("Not enough balance!!!", "error")
             else:
                 wallet.query.get(1).usd_bal=wallet.query.get(1).usd_bal - float(request.form.get("amount"))
                 wallet.query.get(1).balance = str(wallet.query.get(1).balance + float(request.form.get("amount"))*rates_sell[0])[0:9]
                 db.session.commit()
-                flash ("You have sold " +request.form.get("amount") + " USD", "success")
+                flash ("Sell successful: -" +request.form.get("amount") + " USD", "success")
         elif currency_selected=="2":
             if float(request.form.get("amount")) > wallet.query.get(1).eur_bal:
-                flash("you don't have enough eur!", "error")
+                flash("Not enough balance!!!", "error")
             else:
                 wallet.query.get(1).eur_bal= wallet.query.get(1).eur_bal - float(request.form.get("amount"))
                 wallet.query.get(1).balance = str(wallet.query.get(1).balance + float(request.form.get("amount"))*rates_sell[1])[0:9]
                 db.session.commit()
-                flash ("You have sold " +request.form.get("amount") + " EUR", "success")
+                flash ("Sell successful: -" +request.form.get("amount") + " EUR", "success")
         elif currency_selected=="3":
             if float(request.form.get("amount")) > wallet.query.get(1).gbp_bal:
-                flash("you don't have enough gbp!", "error")
+                flash("Not enough balance!!!", "error")
             else:
                 wallet.query.get(1).gbp_bal= wallet.query.get(1).gbp_bal - float(request.form.get("amount"))
                 wallet.query.get(1).balance = str(wallet.query.get(1).balance + float(request.form.get("amount"))*rates_sell[2])[0:9]
                 db.session.commit()
-                flash ("You have sold " +request.form.get("amount") + " GBP", "success")
+                flash ("Sell successful: -" +request.form.get("amount") + " GBP", "success")
         
         print(wallet.query.get(1))
 

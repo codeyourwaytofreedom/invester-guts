@@ -1,21 +1,38 @@
-console.log("uploaded js")
 
-// function update_values() {
-//     $.getJSON("http://127.0.0.1:5000" + '/rates',
-            
-//     function(data) {
-//     $('#usd').text(data.rate[0]);
-//     $('#gbp').text(data.rate[1]);
-//     $('#eur').text(data.rate[2]);
-//     });
-    
-// };
+const xhttp = new XMLHttpRequest();
+  xhttp.responseType = 'json';
+  xhttp.onload = function() {
+    var rates = this.response;
+    console.log(rates)
+    document.getElementById("usd").innerHTML = rates.rate[0]
+    document.getElementById("gbp").innerHTML = rates.rate[1]
+    document.getElementById("eur").innerHTML = rates.rate[2]
 
-// $(document).ready(update_values())
+    document.getElementById("usd_sell").innerHTML = rates.rates_sell[0]
+    document.getElementById("gbp_sell").innerHTML = rates.rates_sell[1]
+    document.getElementById("eur_sell").innerHTML = rates.rates_sell[2]
+    console.log("updated")
+  }
 
-// $(function() {
-//   $('#flash').delay(5000).fadeOut();
-// });
+function update_rates() {  
+  xhttp.open("GET", "http://127.0.0.1:5000/rates");
+  xhttp.send();
+}
+
+
+
+
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+// Usage!
+if (document.getElementById('flash'))
+{
+sleep(5000).then(() => {document.getElementById('flash').style.display="none"});
+}
+
+
 
 
 let cbsell = document.getElementById('cbsell');
@@ -51,6 +68,7 @@ function uncheck_cbbuy()
     currency.style.backgroundImage = "linear-gradient(to right, lightsalmon, white)";
     amount.style.backgroundImage = "linear-gradient(to right, lightsalmon, white)";
     amount.value = ""
+    update_rates()
 }
 
 function uncheck_cbsell() 
@@ -72,4 +90,5 @@ function uncheck_cbsell()
     currency.style.backgroundImage = "linear-gradient(to right,#90EE90, white)";
     amount.style.backgroundImage = "linear-gradient(to right,#90EE90, white)";
     amount.value = ""
+    update_rates()
 }
