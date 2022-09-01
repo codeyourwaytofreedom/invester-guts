@@ -105,7 +105,7 @@ def wallets():
                 wallet.query.get(1).usd_bal=wallet.query.get(1).usd_bal - float(request.form.get("amount"))
                 wallet.query.get(1).balance = str(wallet.query.get(1).balance + float(request.form.get("amount"))*rates_sell[0])[0:9]
                 db.session.commit()
-                flash ("Sell successful: -" +request.form.get("amount") + " USD", "success")
+                flash ("Sale successful: -" +request.form.get("amount") + " USD", "success")
         elif currency_selected=="2":
             if float(request.form.get("amount")) > wallet.query.get(1).eur_bal:
                 flash("Not enough balance!!!", "error")
@@ -113,7 +113,7 @@ def wallets():
                 wallet.query.get(1).eur_bal= wallet.query.get(1).eur_bal - float(request.form.get("amount"))
                 wallet.query.get(1).balance = str(wallet.query.get(1).balance + float(request.form.get("amount"))*rates_sell[1])[0:9]
                 db.session.commit()
-                flash ("Sell successful: -" +request.form.get("amount") + " EUR", "success")
+                flash ("Sale successful: -" +request.form.get("amount") + " EUR", "success")
         elif currency_selected=="3":
             if float(request.form.get("amount")) > wallet.query.get(1).gbp_bal:
                 flash("Not enough balance!!!", "error")
@@ -121,7 +121,7 @@ def wallets():
                 wallet.query.get(1).gbp_bal= wallet.query.get(1).gbp_bal - float(request.form.get("amount"))
                 wallet.query.get(1).balance = str(wallet.query.get(1).balance + float(request.form.get("amount"))*rates_sell[2])[0:9]
                 db.session.commit()
-                flash ("Sell successful: -" +request.form.get("amount") + " GBP", "success")
+                flash ("Sale successful: -" +request.form.get("amount") + " GBP", "success")
         
         print(wallet.query.get(1))
 
